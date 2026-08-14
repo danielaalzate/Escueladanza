@@ -107,6 +107,21 @@
         }
       });
       header.insertBefore(menuToggle, picker);
+
+      // Keep the language control available inside the hamburger navigation.
+      // The desktop selector remains in the header, while this copy is only
+      // revealed on touch layouts.
+      const mobilePicker = picker.cloneNode(true);
+      mobilePicker.classList.add('mobile-language-picker');
+      const mobileSelect = mobilePicker.querySelector('select');
+      mobileSelect.value = lang;
+      mobileSelect.addEventListener('change', () => {
+        localStorage.setItem('sb-language', mobileSelect.value);
+        const url = new URL(location.href);
+        url.searchParams.set('lang', mobileSelect.value);
+        location.href = url.toString();
+      });
+      nav.appendChild(mobilePicker);
     }
   }
 
@@ -172,6 +187,6 @@
   document.head.appendChild(css);
 
   const mobileCss = document.createElement('style');
-  mobileCss.textContent = '.whatsapp svg{fill:none!important;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}@media(max-width:900px){.page-header{height:70px;padding:0 22px;gap:14px}.page-header .simple-brand{font-size:16px}.page-header .brand-icon{height:38px}.page-header .language-picker,.page-header .nav-cta{display:none}.mobile-menu-toggle{display:grid;place-content:center;gap:5px;width:38px;height:38px;margin-left:auto;border:1px solid #d8a8be;background:#fff;color:#271e22;cursor:pointer}.mobile-menu-toggle span{display:block;width:18px;height:1px;background:currentColor;transition:transform .2s,opacity .2s}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(2){opacity:0}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}.page-header nav{display:none}.page-header.mobile-menu-open nav{position:absolute;display:flex;top:70px;left:0;right:0;margin:0;padding:18px 25px 24px;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid #e4cad6;box-shadow:0 14px 24px rgba(35,20,28,.1)}.page-header nav>a,.page-header .nav-dropdown>button{display:block;width:100%;padding:13px 0!important;border-bottom:1px solid #f0e1e7;font-size:13px;text-align:left}.page-header .nav-dropdown{display:block}.page-header .discipline-menu{position:static;display:none;min-width:0;padding:0 0 8px;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.page-header .nav-dropdown.open .discipline-menu{display:block}.page-header .discipline-menu a{padding:9px 12px!important;font-size:11px!important}.whatsapp{width:56px!important;height:56px!important;right:18px!important;bottom:18px!important}.whatsapp svg{width:30px!important;height:30px!important}}@media(min-width:901px){.mobile-menu-toggle{display:none}}';
+  mobileCss.textContent = '.whatsapp svg{fill:none!important;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}@media(max-width:900px){.page-header{height:70px;padding:0 22px;gap:14px}.page-header .simple-brand{font-size:16px}.page-header .brand-icon{height:38px}.page-header>.language-picker,.page-header .nav-cta{display:none}.mobile-menu-toggle{display:grid;place-content:center;gap:5px;width:38px;height:38px;margin-left:auto;border:1px solid #d8a8be;background:#fff;color:#271e22;cursor:pointer}.mobile-menu-toggle span{display:block;width:18px;height:1px;background:currentColor;transition:transform .2s,opacity .2s}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(2){opacity:0}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}.page-header nav{display:none}.page-header.mobile-menu-open nav{position:absolute;display:flex;top:70px;left:0;right:0;margin:0;padding:18px 25px 24px;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid #e4cad6;box-shadow:0 14px 24px rgba(35,20,28,.1)}.page-header nav>a,.page-header .nav-dropdown>button{display:block;width:100%;padding:13px 0!important;border-bottom:1px solid #f0e1e7;font-size:13px;text-align:left}.page-header .nav-dropdown{display:block}.page-header .discipline-menu{position:static;display:none;min-width:0;padding:0 0 8px;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.page-header .nav-dropdown.open .discipline-menu{display:block}.page-header .discipline-menu a{padding:9px 12px!important;font-size:11px!important}.page-header.mobile-menu-open .mobile-language-picker{display:flex;margin:18px 0 0;padding-top:16px;border-top:1px solid #f0e1e7}.whatsapp{width:56px!important;height:56px!important;right:18px!important;bottom:18px!important}.whatsapp svg{width:30px!important;height:30px!important}}@media(min-width:901px){.mobile-menu-toggle,.mobile-language-picker{display:none!important}}';
   document.head.appendChild(mobileCss);
 })();
