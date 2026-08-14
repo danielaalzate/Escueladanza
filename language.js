@@ -42,10 +42,10 @@
   if (disciplineLink) {
     const dropdown = document.createElement('div');
     const items = lang === 'en'
-      ? [['First Steps','primeros-pasos'],['Ballet','ballet'],['Contemporary','contemporanea'],['Spanish Dance & Flamenco','flamenco'],['Jazz Funky','jazz-funky'],['Pilates','pilates-taller.html']]
+      ? [['First Steps','primeros-pasos'],['Ballet','ballet'],['Contemporary','contemporanea'],['Spanish Dance & Flamenco','flamenco'],['Jazz Funky','jazz-funky'],['Pilates Workshop','pilates-taller.html']]
       : lang === 'va'
-        ? [['Primers Passos','primeros-pasos'],['Ballet','ballet'],['Contemporània','contemporanea'],['Dansa espanyola i flamenc','flamenco'],['Jazz Funky','jazz-funky'],['Pilates','pilates-taller.html']]
-        : [['Primeros Pasos','primeros-pasos'],['Ballet','ballet'],['Contemporánea','contemporanea'],['Española y Flamenco','flamenco'],['Jazz Funky','jazz-funky'],['Pilates','pilates-taller.html']];
+        ? [['Primers Passos','primeros-pasos'],['Ballet','ballet'],['Contemporània','contemporanea'],['Dansa espanyola i flamenc','flamenco'],['Jazz Funky','jazz-funky'],['Taller de Pilates','pilates-taller.html']]
+        : [['Primeros Pasos','primeros-pasos'],['Ballet','ballet'],['Contemporánea','contemporanea'],['Española y Flamenco','flamenco'],['Jazz Funky','jazz-funky'],['Taller de Pilates','pilates-taller.html']];
     dropdown.className = 'nav-dropdown' + (disciplineLink.classList.contains('active') ? ' active' : '');
     dropdown.innerHTML = `<button type="button" aria-expanded="false">${disciplineLink.textContent.trim()} <span>⌄</span></button><div class="discipline-menu">${items.map(([label,target]) => `<a href="${target.endsWith('.html') ? target + '?lang=' + lang : 'disciplinas.html?lang=' + lang + '#' + target}">${label}</a>`).join('')}</div>`;
     const toggle = dropdown.querySelector('button');
