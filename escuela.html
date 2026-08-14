@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La escuela | Sonsoles Borja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pages.css">
+<style>    .space-intro{max-width:1200px;margin:0 auto;padding:82px 5vw 28px;display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.space-intro img{width:100%;min-height:500px;object-fit:cover;border-radius:3px;box-shadow:0 22px 56px rgba(26,21,23,.16)}
+.space-intro h2{font:600 clamp(2.35rem,4.2vw,4.5rem)/.98 'Playfair Display',serif;letter-spacing:-.05em;margin:13px 0 25px}
+.space-intro p:not(.eyebrow){font-size:1.08rem;line-height:1.75;color:#5f585c;max-width:560px}
+.space-features{max-width:1200px;margin:16px auto 82px;padding:0 5vw;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.space-feature{background:#f5f0f1;padding:28px 26px;border-top:3px solid #c72d78}
+.space-feature strong{display:block;font-family:'DM Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
+.space-feature span{font:600 1.28rem/1.15 'Playfair Display',serif}
+.location{background:#1d1a1c;color:#fff;padding:78px 5vw 84px}
+.location-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:stretch}
+.location h2{font:600 clamp(2.3rem,4vw,4rem)/1 'Playfair Display',serif;letter-spacing:-.04em;margin:13px 0 22px}
+.location p{color:#d6ced1;line-height:1.7;max-width:400px}
+.map-frame{min-height:370px;border:0;width:100%;filter:saturate(.82) contrast(.96)}
+.directions{display:inline-flex;margin-top:18px;padding:14px 18px;background:#d02b78;color:white;text-decoration:none;font:500 .76rem 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.07em;transition:.2s}
+.directions:hover{background:#ef4b9b;transform:translateY(-2px)}
+.school-details{padding:78px 5vw;background:#fff8fb}
+.school-details-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.school-details article{padding:36px 34px;background:#fff;border-top:3px solid #c72d78}
+.school-details article:last-child{grid-column:1/-1}
+.school-details h2{font:600 clamp(2rem,3vw,3.2rem)/1 'Playfair Display',serif;margin:14px 0 17px}
+.school-details p:not(.eyebrow){font-size:15px;line-height:1.7;max-width:690px}
+.school-details{scroll-margin-top:95px}
+.faculty-layout{max-width:1200px;margin:38px auto 0;display:grid;grid-template-columns:.76fr 1.24fr;gap:34px;align-items:stretch}.faculty-feature{min-height:520px;width:100%;object-fit:cover}.teacher-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.teacher-card{padding:25px;background:#fff;border-top:3px solid #c72d78;min-height:245px}.teacher-card .teacher-avatar{display:grid;place-items:center;width:52px;height:52px;margin-bottom:22px;border-radius:50%;background:#d9d5d6;color:#8d8588;font-size:22px}.teacher-card .teacher-avatar::before{content:'♙';transform:scale(1.5);filter:grayscale(1)}.teacher-card h3{font:600 1.55rem/1.05 'Playfair Display',serif;margin:0 0 9px}.teacher-card .discipline{margin:0 0 14px;color:#c72d78;font:500 .67rem 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}.teacher-card p:last-child{margin:0;font-size:.89rem;line-height:1.55;color:#5f585c}.teacher-card strong{color:#201b1d}
+.teacher-card .teacher-avatar{background:radial-gradient(circle at 50% 28%,#8d8588 0 17%,transparent 18%),radial-gradient(ellipse at 50% 86%,#8d8588 0 30%,transparent 31%),#e4e0e1}.teacher-card .teacher-avatar::before{content:none}
+@media(max-width:760px){.space-intro,.location-inner{grid-template-columns:1fr;gap:28px}
+.faculty-layout{grid-template-columns:1fr}.faculty-feature{min-height:420px}.teacher-grid{grid-template-columns:1fr}
+.space-intro{padding-top:52px}
+.space-intro img{min-height:330px}
+.space-features{grid-template-columns:1fr;margin-bottom:55px}
+.location{padding-block:55px}
+.map-frame{min-height:330px}
+}
+  </style>
+<script defer src="language.js">
+</script>
+</head>
+<body>
+<header class="page-header">
+<a class="simple-brand" href="index.html">
+<span class="brand-icon">
+<img src="assets/brand-icon-polished.png" alt="">
+</span>
+<span>Sonsoles <b>Borja</b>
+<i>Taller de danza</i>
+</span>
+</a>
+<nav>
+<a href="index.html">Inicio</a>
+<a class="active" href="escuela.html">Escuela</a>
+<a href="disciplinas.html">Disciplinas</a>
+<a href="calendario.html">Calendario</a>
+<a href="precios.html">Precios</a>
+<a href="sonsoles.html">Sonsoles</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+<a class="nav-cta" href="contacto.html">Solicita información ↗</a>
+</header>
+<main>
+<section class="page-hero">
+<div>
+<p class="eyebrow">La escuela</p>
+<h1>Un lugar para<br>
+<em>crecer bailando.</em>
+</h1>
+<p>Formación, cuidado y un espacio de encuentro en pleno centro de Gandia.</p>
+</div>
+</section>
+<section id="instalaciones" class="space-intro">
+<img src="assets/recepcion-escuela.png" alt="Recepción de la Escuela Taller de Danza Sonsoles Borja">
+<div>
+<p class="eyebrow">Nuestro espacio</p>
+<h2>Todo dispuesto para <em>moverse.</em>
+</h2>
+<p>Las instalaciones cuentan con suelo especial de linóleo para Ballet, salas dotadas con espejos y barras, tres salas de ensayo y dos estudios para entrenar, crear y disfrutar de la danza.</p>
+<p>En Ballet, el trabajo técnico se apoya en los principios del método Vaganova: una formación progresiva que une colocación, musicalidad, fuerza y expresividad.</p>
+<p>En el corazón de Gandia, la escuela es un lugar cercano para las familias y un punto de encuentro para quienes quieren vivir la danza día a día.</p>
+</div>
+</section>
+<section id="profesorado" class="school-details">
+<div class="school-details-inner">
+<article>
+<p class="eyebrow">Profesorado</p>
+<h2>Enseñar desde la <em>experiencia.</em>
+</h2>
+<p>Un acompañamiento cercano y exigente, donde técnica, musicalidad y confianza se trabajan de forma progresiva en cada etapa.</p>
+</article>
+<article id="formacion-reglada">
+<p class="eyebrow">Formación reglada</p>
+<h2>Rigor para avanzar con <em>seguridad.</em>
+</h2>
+<p>Centro reconocido LOE y preparación para los programas de la Royal Academy of Dance. La formación combina el cuidado del proceso personal con una base técnica sólida para cada alumno.</p>
+</article>
+</div>
+<div class="faculty-layout">
+<img class="faculty-feature" src="assets/profesorado-ensenanza.png" alt="Profesora guiando la colocación de una alumna de ballet">
+<div class="teacher-grid" aria-label="Equipo docente">
+<article class="teacher-card"><span class="teacher-avatar" aria-hidden="true"></span><h3>Sonsoles Borja</h3><p class="discipline">Ballet · Pedagogía</p><p><strong>Más de 30 años de experiencia.</strong> Formación en el Central School of Ballet y una trayectoria escénica y docente que une precisión técnica y acompañamiento cercano.</p></article>
+<article class="teacher-card"><span class="teacher-avatar" aria-hidden="true"></span><h3>Clara Montalbán</h3><p class="discipline">Danza contemporánea</p><p><strong>12 años de experiencia.</strong> Explora el movimiento, el trabajo de suelo y la creación colectiva para que cada alumno encuentre su propia voz.</p></article>
+<article class="teacher-card"><span class="teacher-avatar" aria-hidden="true"></span><h3>Lucía Ferrer</h3><p class="discipline">Flamenco · Española</p><p><strong>15 años de experiencia.</strong> Comparte compás, técnica y carácter desde una enseñanza viva, cuidada y conectada con la tradición.</p></article>
+<article class="teacher-card"><span class="teacher-avatar" aria-hidden="true"></span><h3>Marcos Vidal</h3><p class="discipline">Jazz Funky · Pilates</p><p><strong>10 años de experiencia.</strong> Energía, musicalidad y control corporal en clases actuales que hacen del entrenamiento un momento de disfrute.</p></article>
+</div>
+</div>
+</section>
+<section class="location">
+<div class="location-inner">
+<div>
+<p class="eyebrow" style="color:#ef4b9b">Cómo llegar</p>
+<h2>En el corazón de <em>Gandia.</em>
+</h2>
+<p>Carrer Pare Carles Ferrís, 52, 46702 Gandia, Valencia. Te esperamos cerca del centro, en un espacio pensado para que cada clase comience con calma.</p>
+<a class="directions" target="_blank" rel="noopener" href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd61e84b823273ef:0x9083b964c389a8e6?sa=X&amp;ved=1t:8290&amp;ictx=111">Cómo llegar en Google Maps ↗</a>
+</div>
+<iframe class="map-frame" title="Mapa de la Escuela Taller de Danza Sonsoles Borja" loading="lazy" src="https://www.google.com/maps?q=Carrer+Pare+Carles+Ferr%C3%ADs,+52,+46702+Gandia,+Valencia&amp;output=embed">
+</iframe>
+</div>
+</section>
+</main>
+<footer>© 2026 Taller de Danza Sonsoles Borja · Gandia</footer>
+</body>
+</html>
