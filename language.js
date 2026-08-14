@@ -53,6 +53,17 @@
       const opened = dropdown.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(opened));
     });
+    dropdown.querySelectorAll('a[href*="#"]').forEach(item => {
+      item.addEventListener('click', event => {
+        const destination = new URL(item.href, location.href);
+        if (destination.pathname === location.pathname && destination.hash) {
+          event.preventDefault();
+          const section = document.getElementById(destination.hash.slice(1));
+          section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', destination.hash);
+        }
+      });
+    });
     disciplineLink.replaceWith(dropdown);
   }
 
@@ -72,6 +83,31 @@
       location.href = url.toString();
     });
     header.insertBefore(picker, header.lastElementChild);
+
+    const nav = header.querySelector('nav');
+    if (nav) {
+      nav.id = 'site-mobile-navigation';
+      const menuToggle = document.createElement('button');
+      menuToggle.className = 'mobile-menu-toggle';
+      menuToggle.type = 'button';
+      menuToggle.setAttribute('aria-controls', nav.id);
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Abrir menú');
+      menuToggle.innerHTML = '<span></span><span></span><span></span>';
+      menuToggle.addEventListener('click', () => {
+        const opened = header.classList.toggle('mobile-menu-open');
+        menuToggle.setAttribute('aria-expanded', String(opened));
+        menuToggle.setAttribute('aria-label', opened ? 'Cerrar menú' : 'Abrir menú');
+      });
+      nav.addEventListener('click', event => {
+        if (event.target.closest('a')) {
+          header.classList.remove('mobile-menu-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Abrir menú');
+        }
+      });
+      header.insertBefore(menuToggle, picker);
+    }
   }
 
   document.querySelectorAll('a[href$=".html"]').forEach(link => {
@@ -129,9 +165,13 @@
   whatsapp.target = '_blank';
   whatsapp.rel = 'noreferrer';
   whatsapp.setAttribute('aria-label', 'Contactar por WhatsApp');
-  whatsapp.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27.2 4.7A15.3 15.3 0 0 0 3.3 23.2L2 30l7-1.8A15.3 15.3 0 1 0 27.2 4.7ZM16.2 27a12.4 12.4 0 0 1-6.3-1.7l-.5-.3-4.2 1.1 1.1-4.1-.3-.5A12.4 12.4 0 1 1 16.2 27Zm6.8-9.3c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.3-.5.3-.9.1-1.6-.8-2.7-1.5-3.8-3.5-.3-.5.3-.5.9-1.7.1-.2.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.8-.3-.7-.7-.6-.9-.6h-.8c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 3.9c.2.3 2.8 4.3 6.8 6 .9.4 1.6.7 2.2.9.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4Z"/></svg><span>WhatsApp</span>';
+  whatsapp.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.9 7l-4.1 1.1 1.1-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.6c.3-.4.5-.4.8-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c-.1.2-.1.3 0 .5.7 1.2 1.7 2.1 2.9 2.7.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .8-.5 1.5-1.2 1.8-.5.2-1.2.3-2.1 0-1.1-.4-2.4-1.2-3.6-2.3-1-1-1.9-2.1-2.3-3.2-.4-1-.3-1.8.9-2.7Z"/></svg><span>WhatsApp</span>';
 
   const css = document.createElement('style');
   css.textContent = '.whatsapp{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25d366;color:#fff;box-shadow:0 12px 28px rgba(0,0,0,.24);z-index:30;transition:transform .2s,box-shadow .2s}.whatsapp:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 32px rgba(0,0,0,.3)}.whatsapp svg{width:29px;height:29px;fill:currentColor}.whatsapp span{position:absolute;right:69px;white-space:nowrap;background:#1b171a;color:#fff;padding:8px 10px;opacity:0;transform:translateX(6px);pointer-events:none;font:500 10px DM Sans,sans-serif;transition:.2s}.whatsapp:hover span{opacity:1;transform:translateX(0)}@media(max-width:560px){.whatsapp{right:16px;bottom:16px;width:54px;height:54px}.whatsapp span{display:none}}.language-picker{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:24px;color:#6f5360;font:500 9px/1 DM Mono,monospace;letter-spacing:.1em;text-transform:uppercase}.language-picker select{appearance:none;border:1px solid #d8a8be;background:#fff;color:#271e22;padding:9px 24px 9px 10px;border-radius:0;font:500 10px/1 DM Mono,monospace;letter-spacing:.08em;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,#c72d78 50%),linear-gradient(135deg,#c72d78 50%,transparent 50%);background-position:calc(100% - 12px) 50%,calc(100% - 8px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}.language-picker select:focus{outline:2px solid #e984b5;outline-offset:2px}@media(max-width:1050px){.language-picker{margin:0 10px 0 auto}.language-picker>span{display:none}}@media(max-width:760px){.language-picker{display:none}}';
   document.head.appendChild(css);
+
+  const mobileCss = document.createElement('style');
+  mobileCss.textContent = '.whatsapp svg{fill:none!important;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}@media(max-width:900px){.page-header{height:70px;padding:0 22px;gap:14px}.page-header .simple-brand{font-size:16px}.page-header .brand-icon{height:38px}.page-header .language-picker,.page-header .nav-cta{display:none}.mobile-menu-toggle{display:grid;place-content:center;gap:5px;width:38px;height:38px;margin-left:auto;border:1px solid #d8a8be;background:#fff;color:#271e22;cursor:pointer}.mobile-menu-toggle span{display:block;width:18px;height:1px;background:currentColor;transition:transform .2s,opacity .2s}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(2){opacity:0}.page-header.mobile-menu-open .mobile-menu-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}.page-header nav{display:none}.page-header.mobile-menu-open nav{position:absolute;display:flex;top:70px;left:0;right:0;margin:0;padding:18px 25px 24px;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid #e4cad6;box-shadow:0 14px 24px rgba(35,20,28,.1)}.page-header nav>a,.page-header .nav-dropdown>button{display:block;width:100%;padding:13px 0!important;border-bottom:1px solid #f0e1e7;font-size:13px;text-align:left}.page-header .nav-dropdown{display:block}.page-header .discipline-menu{position:static;display:none;min-width:0;padding:0 0 8px;border:0;box-shadow:none;opacity:1;visibility:visible;transform:none}.page-header .nav-dropdown.open .discipline-menu{display:block}.page-header .discipline-menu a{padding:9px 12px!important;font-size:11px!important}.whatsapp{width:56px!important;height:56px!important;right:18px!important;bottom:18px!important}.whatsapp svg{width:30px!important;height:30px!important}}@media(min-width:901px){.mobile-menu-toggle{display:none}}';
+  document.head.appendChild(mobileCss);
 })();

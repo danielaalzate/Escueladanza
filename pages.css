@@ -29,3 +29,13 @@ footer{padding:27px 5vw;background:var(--soft);font:9px 'DM Mono',monospace;lett
 @media(max-width:560px){.link-grid,.price-grid,.contact-cards{grid-template-columns:1fr}.link-grid a,.price-card{border-right:0;border-bottom:1px solid var(--line)}.link-grid a:last-child,.price-card:last-child{border-bottom:0}.nav-cta{display:none}.discipline-row>div{padding:45px 25px}.page-hero{min-height:310px}}
 .nav-dropdown{position:relative;display:flex;align-items:center}.nav-dropdown button{border:0;background:transparent;color:inherit;font:inherit;font-size:inherit;cursor:pointer;padding:6px 0}.nav-dropdown button span{font-size:12px;margin-left:3px;color:var(--pink)}.nav-dropdown.active button,.nav-dropdown:focus-within button,.nav-dropdown:hover button{color:var(--pink)}.discipline-menu{position:absolute;top:calc(100% + 12px);left:-18px;min-width:205px;padding:8px;background:#fff;border:1px solid var(--line);box-shadow:0 15px 32px rgba(39,30,34,.12);opacity:0;visibility:hidden;transform:translateY(-7px);transition:.18s ease;z-index:20}.discipline-menu a{display:block!important;padding:10px 12px!important;font-size:10px!important;letter-spacing:.03em;white-space:nowrap}.discipline-menu a:hover{background:var(--soft);color:var(--pink)}.nav-dropdown:hover .discipline-menu,.nav-dropdown:focus-within .discipline-menu,.nav-dropdown.open .discipline-menu{opacity:1;visibility:visible;transform:translateY(0)}.discipline-row{scroll-margin-top:105px}
 @media(max-width:900px){.nav-dropdown{display:none}}
+
+/* On touch layouts the hero becomes an editorial two-part composition: the full
+   photograph is preserved and the introductory copy has its own readable area. */
+@media(max-width:900px){
+  .home-hero{height:auto;min-height:0;display:flex;flex-direction:column;background:#24151d}
+  .home-hero>img{order:0;display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain;object-position:center;background:#24151d}
+  .home-hero:after{display:none}
+  .home-hero>div{order:1;position:relative;left:auto;right:auto;top:auto;max-width:none;padding:48px max(25px,7vw) 56px;background:linear-gradient(125deg,#24151d,#4a2038)}
+  .home-hero h1{font-size:clamp(52px,9vw,74px)}
+}
