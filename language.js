@@ -209,6 +209,32 @@
       const translations = lang === 'en' ? english : valencian;
       if (translations[key]) node.nodeValue = original.replace(key, translations[key]);
     });
+
+    const pilatesCard = document.getElementById('taller-pilates');
+    if (pilatesCard) {
+      const copy = lang === 'en'
+        ? {
+            kicker: '05 · Pilates Workshop',
+            body: 'Mat, aerial and equipment Pilates for training with mindful movement and precision.',
+            mat: 'Mat Pilates · all levels',
+            aerial: 'Aerial Pilates · small groups',
+            equipment: 'Equipment · private classes or a maximum of 5 people',
+            more: 'More information'
+          }
+        : {
+            kicker: lang === 'va' ? '05 · Taller de Pilates' : '05 · Taller de Pilates',
+            body: lang === 'va' ? 'Sòl, aeri i màquines per a entrenar amb atenció, moviment i precisió.' : 'Suelo, aéreo y máquinas para entrenar con atención, movimiento y precisión.',
+            mat: lang === 'va' ? 'Pilates sòl · tots els nivells' : 'Pilates suelo · todos los niveles',
+            aerial: lang === 'va' ? 'Pilates aeri · grups reduïts' : 'Pilates aéreo · grupos reducidos',
+            equipment: lang === 'va' ? 'Màquines · classes privades o màxim 5 persones' : 'Máquinas · clases privadas o máximo 5 personas',
+            more: lang === 'va' ? 'Més informació' : 'Más información'
+          };
+      pilatesCard.querySelector('.eyebrow').textContent = copy.kicker;
+      pilatesCard.querySelector('p:not(.eyebrow)').textContent = copy.body;
+      const points = pilatesCard.querySelectorAll('li');
+      [copy.mat, copy.aerial, copy.equipment].forEach((text, index) => { if (points[index]) points[index].textContent = text; });
+      pilatesCard.querySelector('.discipline-more').childNodes[0].nodeValue = copy.more + ' ';
+    }
   }
 
   const whatsappLink = 'https://wa.me/34600000000?text=Hello%2C%20I%20would%20like%20information.';
