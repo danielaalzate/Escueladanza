@@ -131,6 +131,48 @@
     link.href = url.pathname.split('/').pop() + '?' + url.searchParams.toString();
   });
 
+  // Home discipline cards: keep Funky Jazz as discipline 04 and restore
+  // Taller de Pilates as its own coloured card and destination.
+  const homeDisciplineGrid = document.querySelector('.home-links:not(.explore-links) .link-grid');
+  if (homeDisciplineGrid) {
+    const homeCards = [...homeDisciplineGrid.querySelectorAll(':scope > a')];
+    const sectionTargets = ['ballet', 'contemporanea', 'flamenco', 'jazz-funky'];
+    homeCards.slice(0, 4).forEach((card, index) => {
+      card.href = `disciplinas.html?lang=${lang}#${sectionTargets[index]}`;
+    });
+
+    const jazzCard = homeCards[3];
+    if (jazzCard) {
+      jazzCard.querySelector('b').textContent = '04';
+      jazzCard.querySelector('strong').textContent = 'Funky Jazz';
+      jazzCard.querySelector('span').textContent = lang === 'en'
+        ? 'Rhythm, energy and attitude ↗'
+        : lang === 'va'
+          ? 'Ritme, energia i actitud ↗'
+          : 'Ritmo, energía y actitud ↗';
+    }
+
+    let pilatesCard = homeDisciplineGrid.querySelector('[data-home-discipline="pilates"]');
+    if (!pilatesCard) {
+      pilatesCard = document.createElement('a');
+      pilatesCard.dataset.homeDiscipline = 'pilates';
+      pilatesCard.style.setProperty('background', '#a65b73', 'important');
+      homeDisciplineGrid.appendChild(pilatesCard);
+    }
+    pilatesCard.href = `pilates-taller.html?lang=${lang}`;
+    pilatesCard.innerHTML = `<b>05</b><strong>${lang === 'en' ? 'Pilates Workshop' : 'Taller de Pilates'}</strong><span>${lang === 'en' ? 'Mat, aerial and equipment ↗' : lang === 'va' ? 'Sòl, aeri i màquines ↗' : 'Suelo, aéreo y máquinas ↗'}</span>`;
+
+    const homeDisciplineStyle = document.createElement('style');
+    homeDisciplineStyle.textContent = `
+      .home-links:not(.explore-links) .link-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+      .home-links:not(.explore-links) .link-grid strong{font-size:clamp(20px,1.6vw,26px)!important;overflow-wrap:anywhere}
+      @media(max-width:1100px){.home-links:not(.explore-links) .link-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+      @media(max-width:760px){.home-links:not(.explore-links) .link-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+      @media(max-width:560px){.home-links:not(.explore-links) .link-grid{grid-template-columns:1fr!important}}
+    `;
+    document.head.appendChild(homeDisciplineStyle);
+  }
+
   if (lang === 'en' || lang === 'va') {
     const english = {
       'Gandia · Danza y Pilates':'Gandia · Dance & Pilates',
